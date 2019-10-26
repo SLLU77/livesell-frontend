@@ -1,0 +1,82 @@
+$black: #000000;
+$gray1: #333333;
+$gray2: #666666;
+$gray3: #999999;
+$gray4: #b5b5b5;
+$gray5: #cccccc;
+$gray6: #f8f8f8;
+$white: #ffffff;
+$blue1: #7bb7d7;
+$blue2: #0076ff;
+$pink1: #fa576a;
+$green1: #57d1c2;
+$green2: #3abdad;
+$orange1: #ec7161;
+$yellow1: rgb(255, 254, 218);
+$containerMinWidth: 320px;
+$containerMaxWidth: 400px;
+$containerMinHeight: 330px;
+$headerH: 45px;
+$iphone6: 375px;
+$iphone6plus: 414px;
+$inputRangeTime: 0.3s;
+
+$xxs: 1rem;
+$xs: 1.2rem;
+$s: 1.4rem;
+$m: 1.6rem;
+$l: 1.8rem;
+$xl: 2rem;
+$xxl: 2.2rem;
+$xxxl: 2.4rem;
+
+$fz-12: 12px;
+$fz-13: 13px;
+$fz-14: 14px;
+$fz-15: 15px;
+$fz-16: 16px;
+$fz-18: 18px;
+$fz-20: 20px;
+$fz-22: 22px;
+$fz-24: 24px;
+
+$font: Arial, Helvetica, 'LiHei', 'Microsoft JhengHei', 'PMingLiU', '微軟正黑體', '新細明體', sans-serif;
+$font2: PMingLiU, sans-serif;
+
+@mixin shadow() {
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.1);
+}
+@mixin text-overflow() {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+@mixin textBlock-ellipsis($num) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $num;
+    -webkit-box-orient: vertical;
+}
+
+// background spinner 的固定樣式，$color = { green || orange || white }
+@mixin btn-loading($color: '') {
+    background-position: center -100px;
+    background-repeat: no-repeat;
+    background-size: 2.8rem 2.8rem;
+    @if $color != '' {
+        // background-image: url(mglobal/static/images/loading_btn_#{$color}.gif);
+    }
+    &.loading {
+        color: transparent !important;
+        background-position: center center;
+        > svg {
+            opacity: 0;
+        }
+    }
+}
+
+@mixin img-rwd() {
+    width: 100%;
+    height: auto;
+}

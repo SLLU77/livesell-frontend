@@ -11,7 +11,7 @@ const Meta = ({
     ogimage = '',
     ogsitename = 'Obaybuy Shop',
     ogurl = '',
-    // canonical = 'https://www.etmall.com.tw'
+    canonical = ''
 }) => (
     <Head>
         <title>{title}</title>

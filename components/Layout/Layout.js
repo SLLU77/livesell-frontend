@@ -21,7 +21,7 @@ const Layout = ({
                     disableBackBtn={disableBackBtn}
                     handleBackClick={handleBackClick}
                 />
-                {children}
+                    {children}
                 {hasFooter && <Footer />}
             </div>
             <div id="modal" />

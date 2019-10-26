@@ -19,7 +19,7 @@ const nextConfiguration = {
         config.resolve.alias['@hocs'] = path.join(__dirname, 'hocs')
         config.resolve.alias['@styles'] = path.join(__dirname, 'styles')
 
-     
+  
         //檢測 webpack bundle js 工具
         if (ANALYZE) {
             config.plugins.push(
@@ -37,7 +37,4 @@ const nextConfiguration = {
         return config
     }
 }
-
-module.exports = withPlugins([
-    [withSass, cssModulesConfig]
-], nextConfiguration)
+module.exports = withPlugins([[withSass, cssModulesConfig]], nextConfiguration)
