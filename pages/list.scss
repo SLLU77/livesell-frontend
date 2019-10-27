@@ -1,0 +1,17 @@
+@import './../styles/modules/_swiper.scss';
+@import './../styles/_variables.scss';
+
+.categoryList {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 15px 5px 10px;
+    li {
+        font-size: $s;
+        color: $gray3;
+        padding: 0 15px;
+        border-right: 1px solid $gray5;
+        &:last-child {
+            border-right-width: 0;
+        }
+    }
+}
