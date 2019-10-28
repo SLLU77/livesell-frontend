@@ -7,7 +7,10 @@ import styles from './list.scss'
 
  
 
-const List = ({ productList = [], ...props }) => {
+const List = (
+        { productList = [], 
+          categoryList = [], 
+        ...props }) => {
     console.log('productList',productList);
     (<Layout disableBackBtn={true}>
         <Swiper
@@ -52,14 +55,14 @@ const List = ({ productList = [], ...props }) => {
                     </div>
             
                 </Swiper>
-                {/* <ul className={styles.categoryList}>
-                    {productList.products.map((item, i) => (
-                        <li onClick={e => setCateIndex(i)} key={item.cateId}
-                            >
-                            {item.category}
+                <ul className={styles.categoryList}>
+                    {categoryList.categories.map((item, i) => (
+                        <li onClick={e =>{}}>
+                        // setCateIndex(i)} key={item.cateId}
+                            {item.name}
                         </li>
                     ))}
-                </ul> */}
+                </ul>
                 <h1>list</h1>
             </Layout>
         )
@@ -67,8 +70,12 @@ const List = ({ productList = [], ...props }) => {
 }
 
    List.getInitialProps = async  context => {
-    const res = await fetch('https://flask-shopping.herokuapp.com/api/v1/product')
-    const json = await res.json()
-    return { productList: json }
+    const productRes = await fetch('https://flask-shopping.herokuapp.com/api/v1/product')
+    const productList = await productRes.json()
+    const categoryRes = await fetch('https://flask-shopping.herokuapp.com/api/v1/category')
+    const categoryList = await categoryRes.json()
+    console.log('categoryList: ', categoryList);
+    
+    return { productList, categoryList  }
 }
 export default List
