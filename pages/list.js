@@ -11,29 +11,9 @@ const List = (
         { productList = [], 
           categoryList = [], 
         ...props }) => {
-    console.log('productList',productList);
-    (<Layout disableBackBtn={true}>
-        <Swiper
-           pagination={{
-            el: '.swiper-pagination',
-            clickable: true,
-            dynamicBullets: true
-        }}>
-              
-            <div>
-                <img src="/static/images/banner-01.jpg" />
-            </div>
-            <div>
-                <img src="/static/images/banner-02.jpg" />
-            </div>
-            <div>
-                <img src="/static/images/banner-03.jpg" />
-            </div>
     
-        </Swiper>
-        <h1>list</h1>
-    </Layout>
-)
+    
+
     return (
         (
             <Layout disableBackBtn={true}>
@@ -50,16 +30,13 @@ const List = (
                     <div>
                         <img src="/static/images/banner-02.jpg" />
                     </div>
-                    <div>
-                        <img src="/static/images/banner-03.jpg" />
-                    </div>
+                    
             
                 </Swiper>
                 <ul className={styles.categoryList}>
                     {categoryList.categories.map((item, i) => (
-                        <li onClick={e =>{}}>
-                        // setCateIndex(i)} key={item.cateId}
-                            {item.name}
+                        <li onClick={ e => {} } key={item.cateId}>
+                                {item.name}
                         </li>
                     ))}
                 </ul>
@@ -74,7 +51,6 @@ const List = (
     const productList = await productRes.json()
     const categoryRes = await fetch('https://flask-shopping.herokuapp.com/api/v1/category')
     const categoryList = await categoryRes.json()
-    console.log('categoryList: ', categoryList);
     
     return { productList, categoryList  }
 }

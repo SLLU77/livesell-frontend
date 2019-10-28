@@ -5,6 +5,7 @@
     display: flex;
     flex-flow: row nowrap;
     padding: 15px 5px 10px;
+    background-color: $color-primary;
     li {
         font-size: $s;
         color: $gray3;
