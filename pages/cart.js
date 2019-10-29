@@ -252,6 +252,7 @@ const Cart = ({ cartList, ...props }) => {
 }
 
 Cart.getInitialProps = async ({ query: { cartList } }) => {
+    console.log(cartList)
     return { cartList }
 }
 

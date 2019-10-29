@@ -51,6 +51,9 @@ const List = (
     const productList = await productRes.json()
     const categoryRes = await fetch('https://flask-shopping.herokuapp.com/api/v1/category')
     const categoryList = await categoryRes.json()
+
+   // console.log(productList)
+    console.log(categoryList)
     
     return { productList, categoryList  }
 }

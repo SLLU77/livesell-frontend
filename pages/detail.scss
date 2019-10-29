@@ -1,0 +1,61 @@
+@import './../styles/_variables.scss';
+@import './../styles/modules/_sectionBox.scss';
+@import './../styles/modules/_swiper.scss';
+
+.productImg {
+    width: 100%;
+    min-height: 200px;
+    background-color: $gray5;
+}
+.productInfo {
+    background-color: $white;
+    padding: 10px;
+}
+.productName {
+    font-size: $l;
+    line-height: 1.2em;
+}
+.productSubTitle {
+    color: $pink1;
+    font-size: $s;
+    line-height: 2em;
+}
+.productDesc {
+    font-size: $xs;
+    color: $gray2;
+}
+.styleInfo {
+    width: 120px;
+}
+.youMayAlsoLike {
+    background-color: $white;
+    h3 {
+        font-size: $m;
+        margin: 0 10px 5px;
+        padding: 5px 0;
+        border-bottom: 2px solid $gray5;
+    }
+}
+.footerBar {
+    position: fixed;
+    bottom: 0;
+    background-color: $white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid $gray6;
+    width: 100%;
+}
+.favoriteBtn {
+    font-size: $xl;
+    color: $gray4;
+    display: inline-block;
+    padding: 16px;
+}
+.checkoutBtn {
+    font-size: $m;
+    color: $white;
+    background-color: $orange1;
+    text-align: center;
+    padding: 15px 25px;
+}
