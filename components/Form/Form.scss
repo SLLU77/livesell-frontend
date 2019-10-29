@@ -1,0 +1,58 @@
+@import './../../styles/_variables.scss';
+
+.formControl {
+    margin: 10px 20px 10px 0;
+}
+.label {
+    width: 100%;
+    font-size: $xs;
+    line-height: 4em;
+    span {
+        color: $gray5;
+        margin-left: 5px;
+    }
+}
+.select {
+    min-width: 100px;
+    height: 36px;
+    display: inline-block;
+    color: transparent;
+    text-shadow: 0 0 0 $black;
+    font-size: $s;
+    position: relative;
+    margin: 5px 10px 5px 0;
+    padding: 8px 45px 8px 15px;
+    border: 1px solid $gray5;
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+        linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, $gray5, $gray5);
+    background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+    background-color: $white;
+    &:hover,
+    :active {
+        outline-color: $blue1;
+    }
+    &:focus {
+        background-image: linear-gradient(45deg, $blue1 50%, transparent 50%),
+            linear-gradient(135deg, transparent 50%, $blue1 50%), linear-gradient(to right, $gray5, $gray5);
+        background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
+        background-size: 5px 5px, 5px 5px, 1px 1.5em;
+        background-repeat: no-repeat;
+        border-color: $blue1;
+        outline: 0;
+    }
+}
+.option {
+    color: $black;
+    font-size: $s;
+    padding: 10px 10px;
+    white-space: nowrap;
+    border: 1px dashed $gray4;
+}
+.input {
+    font-size: $s;
+    border: 1px solid $gray5;
+    padding: 10px;
+    margin: 5px 10px 5px 0;
+}

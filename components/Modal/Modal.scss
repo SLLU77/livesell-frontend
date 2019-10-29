@@ -1,0 +1,93 @@
+@import './../../styles/_variables.scss';
+
+.hide {
+    display: none;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: 0;
+    z-index: 50;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 52;
+    transition: background-color cubic-bezier(0.02, 0.01, 0.47, 1) 0.2s 0.2s;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.container {
+    @include shadow();
+    width: 60%;
+    height: 180px;
+    max-height: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background-color: $gray6;
+    border-radius: 5px;
+    z-index: 53;
+}
+.title {
+    border-radius: 5px 5px 0 0;
+    color: $white;
+    background-color: $green1;
+    font-size: $s;
+    text-align: center;
+    padding: 10px;
+}
+.content {
+    font-size: $s;
+    padding: 10px;
+}
+.footer {
+    @include shadow();
+    background-color: $white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    border-radius: 0 0 5px 5px;
+}
+.submitBtn,
+.cancelBtn {
+    font-size: $s;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    width: 100%;
+}
+.submitBtn {
+    color: $green1;
+}
+.cancelBtn {
+    color: $gray3;
+}
+.loading {
+    width: 60px;
+    height: 35px;
+    max-height: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background: url('/static/images/loading.gif') no-repeat center center;
+    background-color: $gray6;
+    background-size: contain;
+    border-radius: 5px;
+    z-index: 53;
+}

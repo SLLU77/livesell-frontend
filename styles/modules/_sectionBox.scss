@@ -1,0 +1,55 @@
+@import './../_variables.scss';
+
+.sectionBox {
+    background-color: $white;
+    padding: 0;
+    margin: 0 0 20px;
+    box-shadow: 0px 3px 6px 0px rgba(209, 122, 122, 0.1);
+}
+.sectionTitle {
+    display: inline-block;
+    font-size: $m;
+    color: $green1;
+    padding: 2% 3%;
+    font-weight: bold;
+}
+.sectionTab {
+    display: inline-block;
+    li {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: $s;
+    }
+}
+.sectionContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1.5% 3%;
+    border-bottom: 1px dashed $gray5;
+    &:last-child {
+        border-bottom-width: 0;
+    }
+}
+.sectionName {
+    font-size: $xs;
+    width: 40%;
+}
+.sectionText {
+    font-size: $s;
+    width: 60%;
+    text-align: right;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.sectionLabel {
+    color: $gray2;
+    font-size: $xs;
+    width: 20%;
+    padding: 0 10px 0 0;
+    line-height: 2em;
+}
+.sectionInput {
+    font-size: $m;
+    width: 80%;
+}

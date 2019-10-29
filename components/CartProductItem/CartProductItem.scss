@@ -1,0 +1,48 @@
+@import './../../styles/_variables.scss';
+@import './../../styles/modules/_sectionBox.scss';
+
+.cartProductItem {
+    composes: sectionBox;
+    display: flex;
+    flex-direction: row;
+}
+.productImg {
+    width: 30%;
+    padding-bottom: 35%;
+}
+.simpleProductImg {
+    width: 15%;
+}
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 70%;
+    margin: 2% 2% 2% 5%;
+    dt,
+    dd {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+}
+.productName {
+    max-width: 65%;
+    font-size: $xs;
+    margin-top: 5px;
+}
+.styleInfo {
+    width: 100%;
+    color: $gray4;
+    font-size: $xs;
+    margin-bottom: 5px;
+}
+.productPrice {
+    min-width: 35%;
+    text-align: right;
+}
+.productRemove {
+    color: $gray5;
+    line-height: 2em;
+}

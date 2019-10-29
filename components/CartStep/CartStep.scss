@@ -1,0 +1,43 @@
+@import './../../styles/_variables.scss';
+
+.cartStep {
+    position: relative;
+    background-color: $gray6;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+.step {
+    background-color: $gray6;
+    position: relative;
+    color: $gray5;
+    font-size: $xxs;
+    width: 33%;
+    max-width: calc(1000px / 3);
+    padding: 5px;
+    margin: 10px;
+    line-height: 1.8em;
+    i {
+        font-size: $xs;
+        color: $white;
+        background-color: $green1;
+        border: 2px solid $gray6;
+        position: absolute;
+        left: 50%;
+        margin-left: -11px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        line-height: 1.8em;
+    }
+}
+.done {
+    composes: step;
+    color: $gray5;
+}
+.current {
+    composes: step;
+    color: $green1;
+    font-weight: bold;
+}
