@@ -12,7 +12,9 @@ const List = (
           categoryList = [], 
         ...props }) => {
     
-    
+    let setCategory = ()=>{
+
+    }
 
     return (
         (
@@ -35,7 +37,7 @@ const List = (
                 </Swiper>
                 <ul className={styles.categoryList}>
                     {categoryList.categories.map((item, i) => (
-                        <li onClick={ e => {} } key={item.cateId}>
+                        <li onClick={ e => {} } key={item.id}>
                                 {item.name}
                         </li>
                     ))}
@@ -51,6 +53,8 @@ const List = (
     const productList = await productRes.json()
     const categoryRes = await fetch('https://flask-shopping.herokuapp.com/api/v1/category')
     const categoryList = await categoryRes.json()
+    console.log('categoryList: ', categoryList);
+    
     
     return { productList, categoryList  }
 }

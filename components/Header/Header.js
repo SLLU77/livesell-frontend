@@ -18,15 +18,21 @@ const Header = ({   disableBackBtn = false, disableCartBtn = false, handleBackCl
     return (
     
     
-        <div className={styles.header} > 
+        <header className={styles.header} > 
             {!disableBackBtn && 
             <div className={styles.iconBack}
                     onClick={handleClick} 
                     data-testid="backBtn" /> }
+            <h1 className={styles.logo} data-testid="logo">
+                <a href="/">
+                    <strong>Obay</strong>
+                    <span>Buy</span>
+                </a>
+            </h1>
         
-        
-
-        </div>
+        {!disableCartBtn && (
+                <a href="/cart" className={`icon-shopping-cart ${styles.shoppingCart}`} data-testid="cartBtn" />)}
+        </header>
     
     ) 
 }
