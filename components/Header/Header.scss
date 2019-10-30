@@ -29,10 +29,10 @@
         
     }
     strong {
-        color: $white;
+        color: $color-secondary;
     }
     span {
-        color: $white;
+        color: $color-secondary;
         letter-spacing: -0.05em;
     }
 }
@@ -77,8 +77,9 @@
 }
 .shoppingCart {
     position: absolute;
-    top: 0;
-    right: 0;
-    color: $white;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color:$color-secondary;
     padding: 13px;
 }
