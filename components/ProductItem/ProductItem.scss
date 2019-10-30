@@ -1,0 +1,26 @@
+@import '../../styles/_variables.scss';
+@import '../../styles/modules/_sectionBox.scss';
+// @import '../../hocs/withPromoTag/withPromoTag.scss';
+
+.productItem {
+    width: 46%;
+    margin-bottom: 10px;
+}
+.productImg {
+    @include shadow;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.promoTag {
+}
+.productInfo {
+    margin: 2% 2% 2% 5%;
+}
+.productName {
+    font-size: $xs;
+}
+.productPrice {
+}
+.productRemove {
+    color: $gray5;
+}

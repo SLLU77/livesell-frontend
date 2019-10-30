@@ -1,5 +1,7 @@
 @import './../styles/modules/_swiper.scss';
 @import './../styles/_variables.scss';
+@import './../components/ProductList/ProductList.scss';
+@import './../components/ProductItem/ProductItem.scss';
 
 .categoryList {
     display: flex;
