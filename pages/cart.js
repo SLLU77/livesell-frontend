@@ -14,8 +14,9 @@ const ENUM_STEP = {
     CHECKOUT: 1
 }
 const Cart = ({ cartList, ...props }) => {
+    console.log(cartList)
     const { CART, CHECKOUT } = ENUM_STEP
-    const totalPrice = cartList.reduce((total, currentItem) => {
+    const totalPrice = cartList.products.reduce((total, currentItem) => {
         const { price, quantity } = currentItem
         return price * Number(quantity) + total
     }, 0)
@@ -26,6 +27,7 @@ const Cart = ({ cartList, ...props }) => {
     // Cart
     const [amount, setAmount] = useState(totalPrice)
     const [products, setProducts] = useState([...cartList])
+    const [products, setProducts] = useState([cartList.products])
     const handleItemChange = ({ styleInfo, totalAmount, count }) => {
         setProducts(
             products.map(prod => (styleInfo.value === prod.styleInfo.value ? { ...prod, quantity: count } : prod))
@@ -252,6 +254,7 @@ const Cart = ({ cartList, ...props }) => {
 }
 
 Cart.getInitialProps = async ({ query: { cartList } }) => {
+    console.log('-----------------------------')
     console.log(cartList)
     return { cartList }
 }

@@ -27,15 +27,20 @@ const Detail = ({ product, ...props }) => {
         setQuantity('')
         value ? setInstock(product.styleInfo.filter(item => item.value === value)[0]['quantity']) : setInstock(0)
     }
+    console.log('setModalContent=======')
+
     const addToCart = async e => {
+        console.log('addTOCart')
         if (!styleId || !quantity) {
             setModalContent({
                 content: '請選擇顏色數量',
                 cancelText: null,
                 onClose: () => setModalContent(null)
             })
-            return
+            console.log('addtocart=======')
+            //return
         }
+        console.log('after styleId')
         const result = await fetch('/addToCart', {
             method: 'POST',
             headers: {
@@ -48,6 +53,13 @@ const Detail = ({ product, ...props }) => {
             })
         })
         const { isSuccess, errorMsg } = await result.json()
+        console.log('-----------------------------++++=++')
+      //  console.log(result.json())
+        console.log(isSuccess)
+        console.log(errorMsg)
+
+        location.href = '/cart'
+        
         if (isSuccess) {
             location.href = '/cart'
         } else {
@@ -115,7 +127,7 @@ const Detail = ({ product, ...props }) => {
 
 Detail.getInitialProps = async ({ req, query }) => {
  //   const res = await fetch(`https://liveserverpy.herokuapp.com/api/v1/products/${query.goodId}`)
-    const res = await fetch(`https://flask-shopping.herokuapp.com/api/v1/product/2`)
+    const res = await fetch(`https://flask-shopping.herokuapp.com/api/v1/product`)
     const json = await res.json()
     console.log(json)
     return { product: json }

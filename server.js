@@ -32,6 +32,64 @@ app.prepare().then(() => {
         ctx.respond = false
     })
  
+     // 加入購物車
+     router.post(`/addToCart`, async ctx => {
+        try {
+            console.log('post addtocart')
+        //    const res = await fetch('https://liveserverpy.herokuapp.com/api/v1/basket', {
+            const res = await fetch('https://flask-shopping.herokuapp.com/api/v1/product', {
+            method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_token: ctx.cookies.get('access_token'),
+                    ...ctx.request.body
+                })
+            })
+
+            console.log('post addtocart 2')
+            const { access_token, isSuccess } = await res.json()
+            console.log('await addtocart')
+            console.log(isSuccess)
+            console.log(access_token)
+            if (isSuccess && access_token) {
+                // set cookie
+                ctx.cookies.set('access_token', access_token, {
+                    maxAge: 10 * 60 * 1000,
+                    httpOnly: false
+                })
+            }
+            ctx.status = 200
+            ctx.body = {
+                isSuccess,
+                errorMsg: isSuccess ? '' : '系統異常，無法加入購物車！1'
+            }
+        } catch (err) {
+            console.log('error=', err)
+        }
+    })
+
+     // 購物車 Step1
+     router.get(`/cart`, async ctx => {
+        try {
+            const res = await fetch(
+                'https://flask-shopping.herokuapp.com/api/v1/product'
+            //    `https://liveserverpy.herokuapp.com/api/v1/basket?access_token=${ctx.cookies.get('access_token')}`
+            )
+            const cartList = await res.json()
+            console.log('cartList==>', cartList)
+          //  const query = { ...ctx.query, cartList: Array.isArray(cartList) ? cartList : [] }
+            const query = { ...ctx.query, cartList: cartList }
+          
+            console.log('server', query)
+            
+            ctx.status = 200
+            await app.render(ctx.req, ctx.res, '/cart', query)
+        } catch (err) {
+            console.log('error=', err)
+        }
+    })
 
     router.all('*', async ctx => {
         await handle(ctx.req, ctx.res)
