@@ -14,9 +14,17 @@ const List = ({ productList = [],
     
     let [currentCategory ,setCategory] = useState(-1) 
     let [currentList, setCurrentList] = useState([])
+
     useEffect(()=>{
         setCurrentList(productList.products)
     },[])
+    let getProductByCatgory = (categoryId)=>{
+        
+        return productList.products.filter(list => list.category.id === categoryId )
+    } 
+    let handleProductClick  = (productId)=>{
+        location.href = `/product/${productId}`
+    }
     return (
         (
             <Layout disableBackBtn={true}>
@@ -38,7 +46,7 @@ const List = ({ productList = [],
                 </Swiper>
                 <ul className={styles.categoryList}>
                     {categoryList.categories.map((item, i) => (
-                        <li onClick={ e => {} } key={item.id}>
+                        <li onClick={ e => { setCurrentList(getProductByCatgory(item.id))} } key={item.id}>
                                 {item.name}
                         </li>
                     ))}
@@ -47,21 +55,17 @@ const List = ({ productList = [],
                 {currentList.map(product => (
                         <div
                             className={styles.productItem}
-                            onClick={() =>{}}
+                            onClick={() => handleProductClick(product.id)}
                             key={product.id}
                         >
-                            {
-                                product.name
-                            }
+                          
                              <Image src={product.image} className={styles.productImg} />
-                            {/* <div className={styles.promoWrap}>
-                                <Image src={product.image} className={styles.productImg} />
-                                {product.promoMsg && <div className={styles.tag}>{product.promoMsg}</div>}
-                            </div>
+                             
+                             
                             <ul className={styles.productInfo}>
+                            <li className={`obayPrice ${styles.productPrice}`}>{product.price}</li>
                                 <li className={styles.productName}>{product.name}</li>
-                                <li className={`ehsPrice ${styles.productPrice}`}>{product.price}</li>
-                            </ul> */}
+                            </ul> 
                         </div>
                     ))}
             </div>
@@ -75,7 +79,7 @@ const List = ({ productList = [],
     const productList = await productRes.json()
     const categoryRes = await fetch('https://flask-shopping.herokuapp.com/api/v1/category')
     const categoryList = await categoryRes.json()
-    console.log('productList: ', productList);
+    console.log('produccategoryListtList: ', categoryList);
     
     
     return { productList, categoryList  }

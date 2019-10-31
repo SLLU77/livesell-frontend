@@ -5,6 +5,7 @@
 .productItem {
     width: 46%;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 .productImg {
     @include shadow;

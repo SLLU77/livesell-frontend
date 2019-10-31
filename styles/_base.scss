@@ -5,5 +5,18 @@ body{
 }
 
 *{
-    color:red;
+     
 }
+
+:global{
+
+    .obayPrice {
+        font-size: $l;
+        color: $orange1;
+        font-weight: bold;
+        &::before {
+            content: '$';
+            font-size: $s;
+        }
+    }
+} 

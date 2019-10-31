@@ -1,16 +1,11 @@
 import React from 'react'
- 
-
-// import Link from 'next/link'
-// import Head from 'next/head'
-// import Nav from '../components/nav'
+import styles from './Footer.scss'
 
 const Footer = () => (
     
-    
-        <> 
-            Footer
-        </>
+     <footer className={styles.footer}>
+        Copyright © 1976 Obay Inc. 保留一切權利。
+     </footer>
     
 )
 
