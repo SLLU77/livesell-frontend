@@ -4,10 +4,33 @@ import Layout from '@components/Layout/Layout'
 import styles from './product.scss'
 
 const Product = ({product})=>{
+    let handleFavoriteClick = ()=>{}
+    let addToCart = ()=>{}
     return (
-        <Layout>
+        <Layout hasFooter={false}>
             <div className={styles.productDetail}>
-            <img src={product.product.image} />
+                <div className={styles.imgWrapper}> 
+                    <img src={product.product.image} />
+                    <div className={styles.productInfo}> 
+                        <p className={styles.productName}>
+                            {product.product.name}
+                        </p>
+                        <p className={styles.productPrice}> 
+                            {product.product.price}
+                        </p>
+                    </div>
+                    
+                </div>
+                <p className={styles.productDescription}>
+                            {product.product.description}
+            </p>
+            </div>
+
+            <div className={styles.footerBar}>
+                {/* <div className={`icon-heart ${styles.favoriteBtn}`} onClick={handleFavoriteClick} /> */}
+                <div className={styles.checkoutBtn} onClick={addToCart}>
+                    立即購買
+                </div>
             </div>
         </Layout>
     )

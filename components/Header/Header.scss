@@ -50,7 +50,8 @@
 }
 .iconBack {
     position: absolute;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     left: 5px;
     padding: 12px 15px;
     &:before {
@@ -59,8 +60,8 @@
         height: 10px;
         display: inline-block;
         transform: rotate(-45deg);
-        border-top: 2px solid $white;
-        border-left: 2px solid $white;
+        border-top: 2px solid #999999;
+        border-left: 2px solid #999999;
     }
 }
 .nav {
