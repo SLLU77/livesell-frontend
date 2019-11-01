@@ -32,7 +32,7 @@ app.prepare().then(() => {
         ctx.respond = false
     })
 
-
+   
 	// 送出結帳
     router.post(`/checkout`, async ctx => {
         try {
@@ -46,16 +46,16 @@ app.prepare().then(() => {
                     body: JSON.stringify(ctx.request.body)
                 }
             )
-            console.log(orderId)
-            console.log(isSuccess)
-            console.log(message)
+            console.log(JSON.stringify(ctx.request.body))
             
             const { orderId, isSuccess, message } = await res.json()
+            console.log(message)
             ctx.status = 200
             ctx.body = {
                 orderId,
                 isSuccess,
-                errorMsg: isSuccess ? '' : '無法結帳，請稍後再試'
+                errorMsg: message === "order create success" ? '結帳完成' : '無法結帳，請稍後再試'
+              //  errorMsg: ''
             }
         } catch (err) {
             console.log('error=', err)

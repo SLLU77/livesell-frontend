@@ -1,73 +1,50 @@
 import React,{useState,useEffect} from 'react'
 import 'isomorphic-fetch'
 import Layout from '@components/Layout/Layout'
+import Modal from '@components/Modal/Modal'
+import { Form, Select, Option } from '@components/Form/Form'
 import styles from './product.scss'
 
 
-const Product = ({product})=>{
-
+const Product = ({product, productId})=>{
+    const [modalContent, setModalContent] = useState(null)
     const addToCart = async e => {
-        console.log('addTOCart')
-        console.log(product)
-
- /*       
-        if (!styleId || !quantity) {
-            setModalContent({
-                content: '請選擇顏色數量',
-                cancelText: null,
-                onClose: () => setModalContent(null)
-            })
-            console.log('addtocart=======')
-            //return
-        }
-    */  
-   /*  
-        console.log('after styleId')
-
-        const result = await fetch('/addToCart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                goodId: product.goodId,
-                
-            })
+        setModalContent({
+            content: '請選擇顏色數量',
+            cancelText: null,
+            onClose: () => setModalContent(null)
         })
-        const { isSuccess, errorMsg } = await result.json()
-        console.log('-----------------------------++++=++')
-        console.log(result.json())
-        console.log(isSuccess)
-        console.log(errorMsg)
-*/
-        location.href = '/cart'
-        
-        if (isSuccess) {
-            location.href = '/cart'
-        } else {
-            setModalContent({
-                content: errorMsg,
-                cancelText: null
-            })
-        }
+        location.href = `/cart?productId=${productId}`
     }
 
 
     return (
-        <Layout>
+        <Layout hasFooter={false}>
             <div className={styles.productDetail}>
-            <img src={product.product.image} />
+                <div className={styles.imgWrapper}> 
+                    <img src={product.product.image} />
+                    <div className={styles.productInfo}> 
+                        <p className={styles.productName}>
+                            {product.product.name}
+                        </p>
+                        <p className={styles.productPrice}> 
+                            {product.product.price}
+                        </p>
+                    </div>
+                    
+                </div>
+                <p className={styles.productDescription}>
+                            {product.product.description}
+            </p>
             </div>
 
             <div className={styles.footerBar}>
-            
-            <button className={styles.checkoutBtn} onClick={addToCart}>
-                立即購買
-            </button>
-        </div>
+                {/* <div className={`icon-heart ${styles.favoriteBtn}`} onClick={handleFavoriteClick} /> */}
+                <div className={styles.checkoutBtn} onClick={addToCart}>
+                    立即購買
+                </div>
+            </div>
         </Layout>
-
-        
     )
 }
 
@@ -75,7 +52,8 @@ Product.getInitialProps = async ({ req, query }) => {
     console.log('query: ', query);
     const res = await fetch(`https://flask-shopping.herokuapp.com/api/v1/product/${query.productId}`)
     const json = await res.json()
+    const productId = query.productId;
     console.log('json: ', json);
-    return { product: json }
+    return { product: json, productId }
 }
 export default Product 

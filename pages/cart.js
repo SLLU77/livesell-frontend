@@ -13,89 +13,42 @@ const ENUM_STEP = {
     CART: 0,
     CHECKOUT: 1
 }
-const Cart = ({ cartList, ...props }) => {
-    console.log('##############################################################')
-    console.log(cartList)
+const Cart = ({ product, productId, ...props }) => {
+
     const { CART, CHECKOUT } = ENUM_STEP
- /*   
-    const totalPrice = cartList.products.reduce((total, currentItem) => {
-        const { price, quantity } = currentItem
-        return price * Number(quantity) + total
-    }, 0)
-    console.log('totalprice ---', totalPrice)
-*/
-    const [step, setStep] = useState(ENUM_STEP.CART)
+     const [step, setStep] = useState(ENUM_STEP.CART)
     // Modal
     const [modalContent, setModalContent] = useState(null)
     const onClose = () => setModalContent(null)
-   
-    // Cart
-    //const [amount, setAmount] = useState(1)
-   // const [amount, setAmount] = useState(totalPrice)
-    //const [products, setProducts] = useState([...cartList])
-    //const [products, setProducts] = useState([cartList.products])
     const handleItemChange = ({ styleInfo, totalAmount, count }) => {
         setProducts(
             products.map(prod => (styleInfo.value === prod.styleInfo.value ? { ...prod, quantity: count } : prod))
         )
         setAmount(totalAmount)
     }
-
     // Checkout
-  
     const [amount, setAmount] = useState(1)
-	const [product_id, setProduct_id] = useState(10)
-	const [receiver_product_type, setReceiver_product_type] = useState('100G')
-    const [recode, setRecode] = useState('333')
-
-
-    const [payment, setPayment] = useState(0)
+	const [product_id, setProduct_id] = useState(3)
+	const [receiver_product_type, setReceiver_product_type] = useState('64G')
+    const [recode, setRecode] = useState('123')
+    const [payment, setPayment] = useState(1)
     const [invoice, setInvoice] = useState(0)
     const [receiverCity, setReceiverCity] = useState('')
     const [receiverArea, setReceiverArea] = useState('')
     const [receiverAddr2, setReceiverAddr2] = useState('')
     const [receiverName, setReceiverName] = useState('')
     const [receiverPhone, setReceiverPhone] = useState('')
-    
+  
     
  
     const handleStepChange = () => {
         if (step === CART) {
             setStep(CHECKOUT)
         } else {
-        /*
-        	console.log(payment)
-			console.log(invoice)
-			console.log(receiverName)
-			console.log(receiverPhone)
-			console.log(receiverCity)
-			console.log(receiverArea)
-			console.log(receiverAddr2)
-		*/
-			console.log(amount)
-			console.log(payment)
-			console.log(product_id)
-			console.log(receiverCity)
-			console.log(receiverArea)
-			console.log(receiverAddr2)
-			console.log(receiverName)
-			console.log(receiverPhone)
-			console.log(receiver_product_type)
-			console.log(recode)
             submit()
         }
     }
-/*
-	 "amount": 0,
-    "payment_id": 0,
-    "product_id": 0,
-    "receiver_addr1": "string",
-    "receiver_addr2": "string",
-    "receiver_name": "string",
-    "receiver_phone": "string",
-    "receiver_product_type": "string",
-    "recode": "string"
-  */  
+
     const submit = async () => {
         const res = await fetch('/checkout', {
             method: 'POST',
@@ -103,25 +56,6 @@ const Cart = ({ cartList, ...props }) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-            /*
-                products: products.map(item => {
-                    return {
-                        goodId: item.goodId,
-                        quantity: item.quantity
-                    }
-                }),
-             */
-
-			/*
-                payment,
-                invoice,
-                receiver: {
-                    name: receiverName,
-                    phone: receiverPhone,
-                    addr1: `${receiverCity}${receiverArea}`,
-                    addr2: receiverAddr2
-                }
-			*/
 				amount,
 				payment_id: payment,
 				product_id,
@@ -130,7 +64,7 @@ const Cart = ({ cartList, ...props }) => {
 			    receiver_name: receiverName,
 			    receiver_phone: receiverPhone,
 			    receiver_product_type,
-			    recode,
+                recode,
             })
         })
         const { orderId, isSuccess, errorMsg } = await res.json()
@@ -144,19 +78,6 @@ const Cart = ({ cartList, ...props }) => {
             })
         }
     }
-/*
-    useEffect(() => {
-        if (cartList.length === 0) {
-            setModalContent({
-                content: '購物車沒有商品',
-                submitClick: () => (location.href = '/'),
-                submitText: '返回首頁',
-                cancelText: null,
-                onClose
-            })
-        }
-    }, [])
-*/
     return (
         <Layout
             disableCartBtn={true}
@@ -166,32 +87,18 @@ const Cart = ({ cartList, ...props }) => {
             <CartStep currentStep={step} />
             
             {/* Cart */}
-            {/*
-                step === CART &&
-                cartList.length > 0 &&
-                cartList.map(product => (
+            {
                     <CartProductItem
-                        {...product}
-                        amount={amount}
-                        handleItemChange={handleItemChange}
-                        key={product.goodId}
+                        {...product.product }
+                        key={productId}
                     />
-                ))}
-            {step === CART && (
-                <ul className={styles.sectionBox}>
-                    <li className={styles.sectionContent}>
-                        <div className={styles.sectionName}>Subtotal</div>
-                        <div className={`ehsPrice ${styles.sectionText}`}>{toCurrency(amount)}</div>
-                    </li>
-                </ul>
-            )
-          */}
+            }
 
             {/* Checkout */}
             {step === CHECKOUT && (
                 <Fragment>
                     <div className={`${styles.totalAmount}`}>
-                        總金額<strong>{toCurrency(amount)}</strong>
+                        總金額<strong>{product.product.price}</strong>
                     </div>
                     <h2 className={styles.sectionTitle}>Payment</h2>
                     <ul className={styles.sectionBox}>
@@ -200,8 +107,8 @@ const Cart = ({ cartList, ...props }) => {
                                 type="radio"
                                 id="atm"
                                 name="payment"
-                                onChange={e => setPayment(0)}
-                                checked={payment === 0}
+                                onChange={e => setPayment(1)}
+                                checked={payment === 1}
                             />
                             <Label htmlFor="atm">ATM</Label>
                         </li>
@@ -210,41 +117,13 @@ const Cart = ({ cartList, ...props }) => {
                                 type="radio"
                                 id="doa"
                                 name="payment"
-                                onChange={e => setPayment(1)}
-                                checked={payment === 1}
+                                onChange={e => setPayment(2)}
+                                checked={payment === 2}
                             />
                             <Label htmlFor="doa">貨到付款</Label>
                         </li>
-                        <li className={styles.sectionContent}>
-                            <Input type="radio" id="creditCard" name="payment" disabled />
-                            <Label htmlFor="creditCard">
-                                信用卡 <span>coming soon</span>
-                            </Label>
-                        </li>
                     </ul>
-                    <h2 className={styles.sectionTitle}>Invoice</h2>
-                    <ul className={styles.sectionBox}>
-                        <li className={styles.sectionContent}>
-                            <Input
-                                type="radio"
-                                id="invoice1"
-                                name="invoice"
-                                onChange={e => setInvoice(0)}
-                                checked={invoice === 0}
-                            />
-                            <Label htmlFor="invoice1">捐贈發票</Label>
-                        </li>
-                        <li className={styles.sectionContent}>
-                            <Input
-                                type="radio"
-                                id="invoice2"
-                                name="invoice"
-                                onChange={e => setInvoice(1)}
-                                checked={invoice === 1}
-                            />
-                            <Label htmlFor="invoice2">二聯式發票</Label>
-                        </li>
-                    </ul>
+                   
                     <h2 className={styles.sectionTitle}>Delivery</h2>
                     <ul className={styles.sectionBox}>
                         <li className={styles.sectionContent}>
@@ -320,10 +199,14 @@ const Cart = ({ cartList, ...props }) => {
     )
 }
 
-Cart.getInitialProps = async ({ query: { cartList } }) => {
-    console.log('-----------------------------')
-    console.log(cartList)
-    return { cartList }
+Cart.getInitialProps = async ({ req, query }) => {
+    console.log('query: ', query);
+    const res = await fetch(`https://flask-shopping.herokuapp.com/api/v1/product/${query.productId}`)
+    const json = await res.json()
+    console.log('json: ', json)
+    const productId =  query.productId
+    
+    return { product: json, productId}
 }
 
 export default Cart

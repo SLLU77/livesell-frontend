@@ -5,14 +5,34 @@ import Modal from '@components/Modal/Modal'
 import { toCurrency } from '@utils/tool'
 import styles from './CartProductItem.scss'
 
-const CartProductItem = ({ goodId, image, name, price, styleInfo, quantity, amount, handleItemChange, isSimple }) => {
+const CartProductItem = ({description, image, name, price, ...product }) => {
+   // const CartProductItem = ({ ...product }) => {
+ 
+    console.log(product)
+    /*
+    console.log(product.description)
+    console.log(product.image)
+    console.log(product.name)
+    console.log(product.price)
+    console.log(product.amount)
+    */
+
+   const [amount, setAmount] = useState(1)
+   console.log(amount)
+    console.log(image)
+
     const handleCounterChange = ({ count, setValue }) => {
+      /*  
         let totalAmount = amount - count * price + setValue * price
         handleItemChange({ styleInfo, count, totalAmount })
+    */
+   console.log(setValue)
     }
+
     const [modalContent, setModalContent] = useState(null)
     const onClose = () => setModalContent(null)
     const handleProductRemove = e => {
+        /*
         setModalContent({
             content: '是否確定刪除商品？',
             submitClick: async () => {
@@ -37,24 +57,20 @@ const CartProductItem = ({ goodId, image, name, price, styleInfo, quantity, amou
             },
             onClose
         })
+        */
     }
     return (
         <div className={styles.cartProductItem}>
-            <Image src={image} className={`${isSimple ? styles.simpleProductImg : styles.productImg}`} />
+            <Image src={image} className={styles.productImg} />
             <dl className={styles.productInfo}>
                 <dt>
                     <div className={styles.productName}>{name}</div>
                     <div className={`ehsPrice ${styles.productPrice}`}>{toCurrency(price)}</div>
-                    <div className={styles.styleInfo}>{styleInfo.title}</div>
+                    <div className={styles.styleInfo}>{description}</div>
                 </dt>
-                {!isSimple && (
-                    <dd className={styles.counter}>
-                        <Counter quantity={quantity} handleCounterChange={handleCounterChange} />
-                        <div className={`icon-bin ${styles.productRemove}`} onClick={handleProductRemove} />
-                    </dd>
-                )}
             </dl>
-            <Modal {...modalContent} />
+            
+            
         </div>
     )
 }
