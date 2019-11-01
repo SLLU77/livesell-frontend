@@ -6,6 +6,7 @@ import { Form, Select, Option } from '@components/Form/Form'
 import styles from './product.scss'
 
 
+
 const Product = ({product, productId})=>{
     const [modalContent, setModalContent] = useState(null)
     const addToCart = async e => {
@@ -16,7 +17,6 @@ const Product = ({product, productId})=>{
         })
         location.href = `/cart?productId=${productId}`
     }
-
 
     return (
         <Layout hasFooter={false}>
