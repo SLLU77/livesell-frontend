@@ -1,0 +1,28 @@
+@import './../styles/_variables.scss';
+@import './../styles/modules/_sectionBox.scss';
+
+.totalAmount {
+    color: $gray3;
+    font-size: $m;
+    text-align: center;
+    padding: 3%;
+    strong {
+        color: $orange1;
+        font-size: $xxl;
+        margin-left: 10px;
+        &:before {
+            content: '$';
+            font-size: $m;
+        }
+    }
+}
+.checkoutBtn {
+    color: $white;
+    background-color: $orange1;
+    text-align: center;
+    padding: 8px;
+    position: fixed;
+    bottom: 1%;
+    left: 2%;
+    width: 96%;
+}

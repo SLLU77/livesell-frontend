@@ -1,0 +1,33 @@
+@import './../../styles/_variables.scss';
+
+.counterElement {
+    font-size: $xs;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 3em;
+    background-color: $green1;
+    color: $white;
+}
+.counter {
+    width: 65%;
+    display: flex;
+    flex-direction: row;
+}
+.increment {
+    composes: counterElement;
+    border-left-width: 0;
+}
+.number {
+    font-size: $xs;
+    width: 50px;
+    height: 35px;
+    text-align: center;
+    border: 1px solid $green1;
+    background-color: $green2;
+    color: $white;
+}
+.decrement {
+    composes: counterElement;
+    border-right-width: 0;
+}
