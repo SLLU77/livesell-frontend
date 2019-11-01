@@ -31,7 +31,7 @@ app.prepare().then(() => {
         await app.render(ctx.req, ctx.res, '/product', query)
         ctx.respond = false
     })
- 
+    
 
     router.all('*', async ctx => {
         await handle(ctx.req, ctx.res)

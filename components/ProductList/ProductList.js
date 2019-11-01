@@ -8,4 +8,5 @@ const ProductList = ({ data = [] }) => {
         </div>
     )
 }
+
 export default ProductList
